@@ -8,7 +8,9 @@ import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,5 +38,23 @@ public class PostController {
     }
     Collections.sort(postList, (a, b) -> b.getId() - a.getId());
     return postList;
+  }
+
+  @PutMapping("/post/{postid}/{like}")
+  private Post postLike(
+    @PathVariable String postid,
+    @PathVariable boolean like
+  ) {
+    Post post = postRepo.findByPostId(postid);
+
+    if (like) {
+      post.setLikeCount(post.getLikeCount() + 1);
+    } else {
+      post.setLikeCount(post.getLikeCount() - 1);
+    }
+    if (post.getLikeCount() < 0) {
+      post.setLikeCount(0);
+    }
+    return postRepo.save(post);
   }
 }
