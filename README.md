@@ -1,6 +1,6 @@
 # social-back
 
-#This is complete backend for social media app(insta clone) 
+# This is complete backend for social media app(insta clone) 
 
 For Frontend part go to - https://github.com/Abhi09jeet2000/social-ui repo
 
