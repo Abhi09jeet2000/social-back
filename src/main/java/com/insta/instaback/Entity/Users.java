@@ -1,5 +1,6 @@
 package com.insta.instaback.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class Users {
   @NotNull
   private String userId;
 
+  @Column(unique = true)
   private String userName;
 
   private String name;
